@@ -171,7 +171,7 @@ De acuerdo con la tabla, se pueden extraer la siguiente información que, por ej
   - Se puede afirmar que es semejante a la media de pedidos totales tras un t-test de ambas.
 
 <div>
-<style scoped>
+  <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -183,7 +183,7 @@ De acuerdo con la tabla, se pueden extraer la siguiente información que, por ej
     .dataframe thead th {
         text-align: right;
     }
-</style>
+  </style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
