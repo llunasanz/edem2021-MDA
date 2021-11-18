@@ -14,19 +14,6 @@ Se ha hecho uso del conjunto de datos [Customer_transaction_dataset](https://www
 ### Tabla y tipos de datos
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -171,19 +158,6 @@ De acuerdo con la tabla, se pueden extraer la siguiente información que, por ej
   - Se puede afirmar que es semejante a la media de pedidos totales tras un t-test de ambas.
 
 <div>
-  <style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-  </style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
