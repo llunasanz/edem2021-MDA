@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 # Tarea 1
 
 <div style="text-align: right"> Lluna Sanz Montrull </div>
