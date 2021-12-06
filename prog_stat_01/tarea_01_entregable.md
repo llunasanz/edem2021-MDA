@@ -9,7 +9,7 @@ count | mean | std | min | 25% | 50% | 75% | max |
 
 #### Precio por clase de producto
 
-A continuación, se muestra la distribución del precio del conjunto de datos. Nótese que distribución normal y que, a su vez, está compuesta por otras distribuciones). En los siguientes gráficos, se observan distintas componentes, basadas en las clases de producto (product_class), que componen la distribución del precio.
+A continuación, se muestra la distribución del precio del conjunto de datos. Nótese que la distribución del precio tiene tres máximos. En los siguientes gráficos, se observan distintas componentes, basadas en las clases de producto (product_class), que componen la distribución del precio.
 
 Price             |  Price by product class
 :-------------------------:|:-------------------------:
@@ -701,3 +701,81 @@ De acuerdo con la tabla, se pueden extraer la siguiente información que, por ej
 </div>
 
 <img src="images/ax_05.svg" alt="drawing" width="800"/>
+
+#### Análisis de la influencia de la marca en el precio de las compras
+En este caso, se categoriza la variable "list_price" a tres categorías, dependiendo de si los productos adquiridos son baratos, de precio medio o caros.
+
+Para ello, se han tomado el primer y tercer cuartil como valores determinantes de la categoría, dando lugar a la siguiente tabla cruzada con valores porcentuales:
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>brand</th>
+      <th>Giant Bicycles</th>
+      <th>Norco Bicycles</th>
+      <th>OHM Cycles</th>
+      <th>Solex</th>
+      <th>Trek Bicycles</th>
+      <th>WeareA2B</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>list_price_cat</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Cheap</th>
+      <td>11.652281</td>
+      <td>28.606357</td>
+      <td>30.003341</td>
+      <td>31.086592</td>
+      <td>38.314568</td>
+      <td>11.340524</td>
+      <td>25.106711</td>
+    </tr>
+    <tr>
+      <th>Average</th>
+      <td>59.309494</td>
+      <td>65.106532</td>
+      <td>43.935850</td>
+      <td>46.581914</td>
+      <td>26.441488</td>
+      <td>57.442219</td>
+      <td>49.802006</td>
+    </tr>
+    <tr>
+      <th>Expensive</th>
+      <td>29.038224</td>
+      <td>6.287111</td>
+      <td>26.060809</td>
+      <td>22.331494</td>
+      <td>35.243944</td>
+      <td>31.217257</td>
+      <td>25.091283</td>
+    </tr>
+  </tbody>
+</table>
+
+
+Aplicando el chi-cuadrado:
+
+- Chi: 1972.8325162484111
+- p-value: 0.0
+
+Con un p-valor de 0, se puede afirmar que existe una relación, en las ventas, entre la marca y el precio de los productos.
+
+Bar graph            |  Stacked graph
+:-------------------------:|:-------------------------:
+![](images/ax_08.svg)  |  ![](images/ax_11.svg)
+
+Area chart            |  Heat map
+:-------------------------:|:-------------------------:
+![](images/ax_09.svg)  |  ![](images/ax_10.svg)
