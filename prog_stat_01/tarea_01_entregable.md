@@ -1,7 +1,142 @@
+# Tarea 1
+
+<div style="text-align: right"> Lluna Sanz Montrull </div>
+<div style="text-align: right"> Master en Data Analytics para la Empresa </div>
+<div style="text-align: right"> EDEM - 2021 </div>
+
+## Datos utilizados
+
+Se ha hecho uso del conjunto de datos [Customer_transaction_dataset](https://www.kaggle.com/archit9406/customer-transaction-dataset), concretamente, de la hoja "Transactions".
+- Se ha creado la columna prod_per_customer que representa la cantidad de productos adquiridos, en total, por un cliente determinado.
+- Se han rellenado los valores perdidos numéricos mediante interpolación y se han eliminado los valores NaN categóricos (para dichos valores, se podría considerar recoger los datos perdidos, sustituirlos por el valor más común de la columna o deducir su posible valor mediante un clasificador).
+- Se ha comprobado que *transaction_id* tiene la misma cantidad de elementos únicos que la longitud de su columna, desvelando que los clientes han comprado un único producto por pedido.
+
+### Tabla y tipos de datos
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>transaction_id</th>
+      <th>product_id</th>
+      <th>customer_id</th>
+      <th>transaction_date</th>
+      <th>online_order</th>
+      <th>order_status</th>
+      <th>brand</th>
+      <th>product_line</th>
+      <th>product_class</th>
+      <th>product_size</th>
+      <th>list_price</th>
+      <th>standard_cost</th>
+      <th>product_first_sold_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>2950</td>
+      <td>2017-02-25</td>
+      <td>0.0</td>
+      <td>Approved</td>
+      <td>Solex</td>
+      <td>Standard</td>
+      <td>medium</td>
+      <td>medium</td>
+      <td>71.49</td>
+      <td>53.62</td>
+      <td>41245.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>3</td>
+      <td>3120</td>
+      <td>2017-05-21</td>
+      <td>1.0</td>
+      <td>Approved</td>
+      <td>Trek Bicycles</td>
+      <td>Standard</td>
+      <td>medium</td>
+      <td>large</td>
+      <td>2091.47</td>
+      <td>388.92</td>
+      <td>41701.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>37</td>
+      <td>402</td>
+      <td>2017-10-16</td>
+      <td>0.0</td>
+      <td>Approved</td>
+      <td>OHM Cycles</td>
+      <td>Standard</td>
+      <td>low</td>
+      <td>medium</td>
+      <td>1793.43</td>
+      <td>248.82</td>
+      <td>36361.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>88</td>
+      <td>3135</td>
+      <td>2017-08-31</td>
+      <td>0.0</td>
+      <td>Approved</td>
+      <td>Norco Bicycles</td>
+      <td>Standard</td>
+      <td>medium</td>
+      <td>medium</td>
+      <td>1198.46</td>
+      <td>381.10</td>
+      <td>36145.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>78</td>
+      <td>787</td>
+      <td>2017-10-01</td>
+      <td>1.0</td>
+      <td>Approved</td>
+      <td>Giant Bicycles</td>
+      <td>Standard</td>
+      <td>medium</td>
+      <td>large</td>
+      <td>1765.30</td>
+      <td>709.48</td>
+      <td>42226.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>19445 rows × 13 columns</p>
+</div>
+
+
 ## Estudio de variables
 
 ### list_price
-Es la variable **cuantitativa** que hace referencia al precio del producto adquirido. Ésta se comprende en un rando de entre 12.01 y 2091.47.
+Es la variable **cuantitativa** que hace referencia al precio del producto adquirido. Ésta se comprende en un rango de entre 12.01 y 2091.47.
 
 count | mean | std | min | 25% | 50% | 75% | max |
 :----:|:------------:|:--------:|:-----:|:------:|:-------:|:-------:|:-------:|
@@ -63,6 +198,19 @@ Realizando un test de las medias de precio de producto por clase, se obtiene el 
 Aplicando el t-test para todos los pares de subsets (exceptuando los que son iguales y el subconjunto inexistente de productos grandes de clase baja), se obtiene la siguiente tabla:
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -600,6 +748,43 @@ A simple vista, por ejemplo, se puede averiguar que:
 - los precios de todos los productos de un mismo tamaño se solapan excepto en los pequeños (pudiendo ser susceptible de formar tres grupos distinguidos).
 
 
+### list_price y standard_cost
+
+Dado un producto, se estudiará la existencia de relación entre el precio y el coste del producto.
+
+Standard cost and list price |
+:-------------------------:|
+![](images/ax_12.svg)|
+
+En el análisis, se observa que existe una correlación, positiva y moderada, muy significativa.
+
+Cabe destacar que la nube de puntos podría no seguir una distribución aleatoria. De hecho, se observa que el ratio entre precio y coste no suele bajar de cierto valor, algo que hace pensar que se haya fijado un margen de beneficio mínimo por cada producto. Para observalo mejor, se puede representar gráficamente el valor actual con el predicho por la regresión lineal.
+
+Actual vs predicted plot |
+:-------------------------:|
+![](images/ax_13.svg)|
+
+En la gráfica anterior, no se observa una nube de puntos uniforme. Por tanto, con toda esta información, sí se podría llegar a afirmar que la fijación de precios, con relación al coste, no se deba al azar.
+
+#### Por tamaño de producto
+
+Desglosando el primer plot de este apartado por tamaño de producto, se obtiene lo siguiente:
+
+Standard cost and list price by product size |
+:-------------------------:|
+![](images/ax_14.svg)|
+
+- Los costes y los precios de los productos <ins>pequeños</ins> siguen una correlación perfecta y positiva.
+- Los costes y los precios de los productos <ins>medianos</ins> siguen una correlación moderada y positiva.
+- Los costes y los precios de los productos <ins>grandes</ins> siguen una correlación débil y positiva.
+
+Remarcar que, como se puede contemplar en la figura anterior y como se comentó anteriormente acerca de los márgenes de beneficio, los productos de tamaño pequeño, en términos generales, son los que tienen el márgen de beneficio más pequeño de todos los productos.
+
+También se puede observar la representación entre valores actuales y predichos por tamaño de producto.
+
+Actual vs predicted plot by size |
+:-------------------------:|
+![](images/ax_15.svg)|
 
 
 ### brand
@@ -612,6 +797,19 @@ De acuerdo con la tabla, se pueden extraer la siguiente información que, por ej
   - Se puede afirmar que es semejante a la media de pedidos totales tras un t-test de ambas.
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -707,6 +905,21 @@ En este caso, se categoriza la variable "list_price" a tres categorías, dependi
 
 Para ello, se han tomado el primer y tercer cuartil como valores determinantes de la categoría, dando lugar a la siguiente tabla cruzada con valores porcentuales:
 
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -763,6 +976,7 @@ Para ello, se han tomado el primer y tercer cuartil como valores determinantes d
     </tr>
   </tbody>
 </table>
+</div>
 
 
 Aplicando el chi-cuadrado:
